@@ -13,7 +13,7 @@ import { dashboardRouter } from "./Routes/dashboard.route.js";
 import bodyParser from "body-parser";
 
 const app = express();
-const PORT=8990;
+const PORT=process.env.PORT;
 app.use(bodyParser.json());
 app.use(cors());  
 app.use(express.json());
@@ -25,7 +25,7 @@ app.use("/habits",habitRouter);
 app.use("/goals",goalsRouter);
 app.use("/api/dashboard",dashboardRouter)
 
-console.log("URL:", process.env.SUPABASE_URL)
+
 app.listen(PORT,()=>{
     const status = checkConnection();
     if(!status){
