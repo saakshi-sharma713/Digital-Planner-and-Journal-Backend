@@ -62,17 +62,6 @@ This backend service powers the **Digital Planner & Journal** application. It pr
 | DELETE | /goals/:id    | Delete a goal                | –                                                                 | Success message           |
 
 
-### Daily Moods Table
-
-| Column      | Type        | Description                                                    |
-|------------|------------|----------------------------------------------------------------|
-| id         | UUID       | Primary key (auto-generated with `gen_random_uuid()`)          |
-| user_id    | UUID       | References `users(id)` – identifies which user logged the mood |
-| mood_label | VARCHAR(50)| Text label for the mood (e.g., Happy, Sad, Anxious)            |
-| mood_emoji | VARCHAR(10)| Emoji representing the mood                                     |
-| mood_value | INT        | Numeric value representing mood intensity                        |
-| note       | TEXT       | Optional note or description about the mood                     |
-| created_at | TIMESTAMP  | Timestamp of when the mood was recorded (default `NOW()`)       |
 
 ---
 
@@ -133,6 +122,21 @@ This backend service powers the **Digital Planner & Journal** application. It pr
 | progress    | INTEGER   | Goal completion percentage (0 to 100, default `0`)                           |
 | target_date | DATE      | Target date to achieve the goal (optional)                                  |
 | created_at  | TIMESTAMP | Timestamp of goal creation (default `now()`)                                 |
+
+
+
+### Daily Moods Table
+
+| Column      | Type        | Description                                                    |
+|------------|------------|----------------------------------------------------------------|
+| id         | UUID       | Primary key (auto-generated with `gen_random_uuid()`)          |
+| user_id    | UUID       | References `users(id)` – identifies which user logged the mood |
+| mood_label | VARCHAR(50)| Text label for the mood (e.g., Happy, Sad, Anxious)            |
+| mood_emoji | VARCHAR(10)| Emoji representing the mood                                     |
+| mood_value | INT        | Numeric value representing mood intensity                        |
+| note       | TEXT       | Optional note or description about the mood                     |
+| created_at | TIMESTAMP  | Timestamp of when the mood was recorded (default `NOW()`)       |
+
 
 ---
 
