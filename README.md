@@ -23,8 +23,8 @@ This backend service powers the **Digital Planner & Journal** application. It pr
 
 | Method | Endpoint      | Description                  | Request Body                                               | Response                  |
 |--------|---------------|------------------------------|------------------------------------------------------------|---------------------------|
-| POST   | /auth/signup  | Register a new user          | `{ "name": "John", "email": "john@example.com", "password": "123456" }` | User object + JWT token    |
-| POST   | /auth/login   | Login user and get JWT       | `{ "email": "john@example.com", "password": "123456" }`   | JWT token + user data      |
+| POST   | /user/signup  | Register a new user          | `{ "name": "John", "email": "john@example.com", "password": "123456" }` | User object + JWT token    |
+| POST   | /user/login   | Login user and get JWT       | `{ "email": "john@example.com", "password": "123456" }`   | JWT token + user data      |
 
 > ⚠️ All requests that require authentication must include `Authorization: Bearer <JWT>` in headers.
 
