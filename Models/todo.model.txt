@@ -1,0 +1,2 @@
+create table todos(id uuid primary key default gen_random_uuid(),title TEXT NOT NULL, type TEXT NOT NULL  CHECK (type IN('work','hobby','personal')), priority TEXT NOT NULL   CHECK (priority IN ('low', 'medium', 'high')),due_date timestamp ,
+status boolean default false,user_id uuid references users(id)  on delete cascade,created_at timestamp default now())

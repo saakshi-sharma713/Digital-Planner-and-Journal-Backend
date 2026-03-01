@@ -1,0 +1,9 @@
+// Habit Model
+
+create table habits (
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+    habit_name text not null,
+    user_id uuid references users(id) on delete cascade,
+    completed_days text[] default '{}',
+    created_at timestamp default now()
+);
