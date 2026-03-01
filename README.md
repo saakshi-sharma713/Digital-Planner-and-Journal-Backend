@@ -9,7 +9,6 @@ This backend service powers the **Digital Planner & Journal** application. It pr
 - **Node.js** – JavaScript runtime for server-side logic  
 - **Express.js** – Framework for building REST APIs  
 - **Supabase** – Database and authentication (PostgreSQL)  
-- **Nodemailer / Brevo** – Sending email notifications  
 - **Axios** – HTTP client  
 - **Render / Vercel** – Deployment platform  
 
