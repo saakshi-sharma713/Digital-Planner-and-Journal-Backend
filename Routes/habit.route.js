@@ -9,7 +9,7 @@ import { checkCredentials } from "../Middleware/auth.middleware.js";
 const router = express.Router();
 
 // Routes
-router.get("/",getHabits);          // Get all habits
+router.get("/",checkCredentials,getHabits);          // Get all habits
 router.post("/",  checkCredentials,addHabit);          // Add new habit
 router.put("/:id", updateHabit);     // Update habit completion
 router.delete("/:id", deleteHabit);  // Delete a habit

@@ -4,8 +4,8 @@ import { supabase } from "../Config/supabase.config.js";
 // Get all habits
 export const getHabits = async (req, res) => {
   try {
-    
-    const { data, error } = await supabase.from("habits").select("*");
+    const {id} = req?.user;
+    const { data, error } = await supabase.from("habits").select("*").eq("user_id",id);
     if (error) {
       console.log("Supabase GET error:", error);
       throw error;
