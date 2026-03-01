@@ -61,15 +61,21 @@ This backend service powers the **Digital Planner & Journal** application. It pr
 | PUT    | /goals/:id    | Update a goal                | `{ "progress": 50 }`                                              | Updated goal object       |
 | DELETE | /goals/:id    | Delete a goal                | –                                                                 | Success message           |
 
+
+### Daily Moods Table
+
+| Column      | Type        | Description                                                    |
+|------------|------------|----------------------------------------------------------------|
+| id         | UUID       | Primary key (auto-generated with `gen_random_uuid()`)          |
+| user_id    | UUID       | References `users(id)` – identifies which user logged the mood |
+| mood_label | VARCHAR(50)| Text label for the mood (e.g., Happy, Sad, Anxious)            |
+| mood_emoji | VARCHAR(10)| Emoji representing the mood                                     |
+| mood_value | INT        | Numeric value representing mood intensity                        |
+| note       | TEXT       | Optional note or description about the mood                     |
+| created_at | TIMESTAMP  | Timestamp of when the mood was recorded (default `NOW()`)       |
+
 ---
 
-### Notes
-- `status` for todos is boolean (`true` = completed, `false` = pending)  
-- `completed_days` for habits is a **string array of dates** when the habit was completed  
-- `progress` for goals is an **integer from 0–100** representing completion percentage  
-- Always include JWT in the `Authorization` header for endpoints that require authentication  
-
----
 
 ## Database Schema Explanation
 
