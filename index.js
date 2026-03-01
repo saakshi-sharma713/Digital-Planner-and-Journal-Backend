@@ -11,6 +11,7 @@ import { habitRouter} from "./Routes/habit.route.js";
 import { goalsRouter } from "./Routes/goal.route.js";
 import { dashboardRouter } from "./Routes/dashboard.route.js";
 import bodyParser from "body-parser";
+import { calendarRouter } from "./Routes/Calender.route.js";
 
 const app = express();
 const PORT=process.env.PORT;
@@ -23,7 +24,8 @@ app.use("/journal",journalRouter);
 app.use("/mood",MoodRouter);
 app.use("/habits",habitRouter);
 app.use("/goals",goalsRouter);
-app.use("/api/dashboard",dashboardRouter)
+app.use("/api/dashboard",dashboardRouter);
+app.use("/calendar",calendarRouter)
 app.get('/', (req, res) => {
   res.send('Backend is running!');
 });
