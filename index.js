@@ -24,7 +24,9 @@ app.use("/mood",MoodRouter);
 app.use("/habits",habitRouter);
 app.use("/goals",goalsRouter);
 app.use("/api/dashboard",dashboardRouter)
-
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
 
 app.listen(PORT,()=>{
     const status = checkConnection();
