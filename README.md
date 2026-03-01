@@ -16,20 +16,58 @@ This backend service powers the **Digital Planner & Journal** application. It pr
 
 ## API Documentation
 
-### Base URL
 
+---
 
 ### Authentication
-- **POST /auth/signup** – Register a new user  
-- **POST /auth/login** – Login and receive JWT  
 
-### Journals
-- **GET /journals** – Fetch all journal entries  
-- **POST /journals** – Create a new journal entry  
-- **PUT /journals/:id** – Update a journal entry  
-- **DELETE /journals/:id** – Delete a journal entry  
+| Method | Endpoint      | Description                  | Request Body                                               | Response                  |
+|--------|---------------|------------------------------|------------------------------------------------------------|---------------------------|
+| POST   | /auth/signup  | Register a new user          | `{ "name": "John", "email": "john@example.com", "password": "123456" }` | User object + JWT token    |
+| POST   | /auth/login   | Login user and get JWT       | `{ "email": "john@example.com", "password": "123456" }`   | JWT token + user data      |
 
-> ⚠️ All endpoints requiring authentication must include a valid JWT token in the `Authorization` header.
+> ⚠️ All requests that require authentication must include `Authorization: Bearer <JWT>` in headers.
+
+---
+
+### Todos (Tasks / Habits)
+
+| Method | Endpoint     | Description                  | Request Body                                               | Response                  |
+|--------|-------------|-------------------------------|------------------------------------------------------------|---------------------------|
+| GET    | /todos      | Fetch all todos for a user    | –                                                          | Array of todos            |
+| POST   | /todos      | Create a new todo             | `{ "title": "Read Book", "type": "hobby", "priority": "medium", "due_date": "2026-03-10" }` | Created todo object       |
+| PUT    | /todos/:id  | Update a todo                 | `{ "title": "New Title", "status": true }`                | Updated todo object       |
+| DELETE | /todos/:id  | Delete a todo                 | –                                                          | Success message           |
+
+---
+
+### Habits
+
+| Method | Endpoint      | Description                | Request Body                     | Response                  |
+|--------|---------------|----------------------------|---------------------------------|---------------------------|
+| GET    | /habits       | Get all habits for a user  | –                               | Array of habits           |
+| POST   | /habits       | Create a new habit         | `{ "habit_name": "Exercise" }`  | Created habit object      |
+| PUT    | /habits/:id   | Update habit progress      | `{ "completed_days": ["2026-03-01"] }` | Updated habit object |
+| DELETE | /habits/:id   | Delete a habit             | –                               | Success message           |
+
+---
+
+### Goals
+
+| Method | Endpoint      | Description                  | Request Body                                                      | Response                  |
+|--------|---------------|------------------------------|-------------------------------------------------------------------|---------------------------|
+| GET    | /goals        | Fetch all goals for a user   | –                                                                 | Array of goals            |
+| POST   | /goals        | Create a new goal            | `{ "goal_name": "Learn React", "category": "career", "target_date": "2026-06-01" }` | Created goal object       |
+| PUT    | /goals/:id    | Update a goal                | `{ "progress": 50 }`                                              | Updated goal object       |
+| DELETE | /goals/:id    | Delete a goal                | –                                                                 | Success message           |
+
+---
+
+### Notes
+- `status` for todos is boolean (`true` = completed, `false` = pending)  
+- `completed_days` for habits is a **string array of dates** when the habit was completed  
+- `progress` for goals is an **integer from 0–100** representing completion percentage  
+- Always include JWT in the `Authorization` header for endpoints that require authentication  
 
 ---
 
