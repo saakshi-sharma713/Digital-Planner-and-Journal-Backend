@@ -39,5 +39,5 @@ export async function handleSignUp(req,res){
     if(error){
         return res.status(401).json({message:error.message,status:false})
     }
-    return res.json({message:"User Logged In SuccessFully",data,status:true})
+    return res.json({message:"User SignUp SuccessFully",data,status:true})
 }
