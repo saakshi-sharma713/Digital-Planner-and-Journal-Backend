@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 dotenv.config();
 import express from "express"
+import "./cron.js";
 import cors from "cors"
 import { checkConnection } from "./DBHealthCheck/DBHeathCheck.js";
 import { UserRouter } from "./Routes/user.route.js";
