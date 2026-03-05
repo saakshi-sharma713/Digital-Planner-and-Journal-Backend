@@ -1,11 +1,33 @@
 import { Resend } from "resend";
 import dotenv from "dotenv";
 dotenv.config();
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendReminderEmail = async (to, title, time) => {
-    const fullDate = new Date(time).toLocaleString();
-    const [datePart,timePart] = fullDate.split(",")
+
+  const formatIST = (utc) => {
+    const date = new Date(utc);
+
+    const datePart = date.toLocaleDateString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+
+    const timePart = date.toLocaleTimeString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return { datePart, timePart };
+  };
+
+  // ✅ Call the function
+  const { datePart, timePart } = formatIST(time);
+
   await resend.emails.send({
     from: "Daily Dock <onboarding@resend.dev>",
     to,
@@ -18,22 +40,17 @@ export const sendReminderEmail = async (to, title, time) => {
         🔔 Event Reminder
       </h2>
 
-      <p>
-        Hi Buddy👋,
-      </p>
+      <p>Hi Buddy👋,</p>
 
-      <p>
-        Your event <strong>"${title}"</strong> is starting soon.
-      </p>
-       <p> Scheduled on: <strong>${datePart}</strong> </p>
+      <p>Your event <strong>"${title}"</strong> is starting soon.</p>
+
+      <p> Scheduled on: <strong>${datePart}</strong> </p>
 
       <div style="background:#eef2ff; padding:15px; border-radius:8px; margin:18px 0; font-size:15px;">
-        🕒 Starts at: ${timePart}
+        🕒 Starts at: ${timePart} 
       </div>
 
-      <p style="font-weight:500;">
-        Don’t miss it ⏰
-      </p>
+      <p style="font-weight:500;">Don’t miss it ⏰</p>
 
       <hr style="border:none; border-top:1px solid #ddd; margin:20px 0;" />
 
